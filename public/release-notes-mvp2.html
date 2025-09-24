@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISC CodeConnect - MVP2 Release Notes</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --color-primary: #4f46e5;
+        --color-secondary: #6b7280;
+        --color-background: #ffffff;
+        --color-card-bg: #f9fafb;
+        --color-border: #e5e7eb;
+        --color-text-header: #111827;
+        --color-text-body: #374151;
+        --color-text-muted: #6b7280;
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-primary: #818cf8;
+          --color-secondary: #9ca3af;
+          --color-background: #111827;
+          --color-card-bg: #1f2937;
+          --color-border: #374151;
+          --color-text-header: #f9fafb;
+          --color-text-body: #d1d5db;
+          --color-text-muted: #9ca3af;
+        }
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        background-color: var(--color-background);
+        color: var(--color-text-body);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .header h1 {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--color-text-header);
+        margin: 0;
+        background: linear-gradient(to right, #4f46e5, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .header .release-info {
+        font-size: 16px;
+        color: var(--color-text-muted);
+        margin-top: 8px;
+      }
+
+      .introduction {
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--color-text-body);
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--color-text-header);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .feature-card {
+        background-color: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .feature-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .feature-icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      .feature-title-wrapper {
+        flex-grow: 1;
+      }
+
+      .feature-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--color-text-header);
+        margin: 0;
+      }
+
+      .feature-badge {
+        display: inline-block;
+        background-color: var(--color-primary);
+        color: var(--color-background);
+        padding: 2px 8px;
+        border-radius: 9999px;
+        font-size: 12px;
+        font-weight: 500;
+        margin-left: 8px;
+      }
+
+      .feature-description {
+        color: var(--color-text-muted);
+        margin-top: 4px;
+      }
+
+      .feature-content h4 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--color-text-header);
+        margin-top: 20px;
+        margin-bottom: 12px;
+      }
+
+      .feature-content ul,
+      .feature-content ol {
+        padding-left: 20px;
+        margin: 0;
+        color: var(--color-text-body);
+      }
+
+      .feature-content ul li {
+        margin-bottom: 8px;
+        list-style-type: "✓ ";
+        padding-left: 8px;
+      }
+
+      .feature-content ol li {
+        margin-bottom: 8px;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+      }
+
+      .footer a {
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media print {
+        body {
+          background-color: #ffffff;
+          color: #000000;
+        }
+        .container {
+          padding: 0;
+          max-width: 100%;
+        }
+        .header h1 {
+          -webkit-text-fill-color: initial;
+          background: none;
+          color: #000;
+        }
+        .feature-card {
+          box-shadow: none;
+          border: 1px solid #ccc;
+          page-break-inside: avoid;
+        }
+        :root {
+          --color-primary: #4f46e5;
+          --color-secondary: #6b7280;
+          --color-background: #ffffff;
+          --color-card-bg: #ffffff;
+          --color-border: #e5e7eb;
+          --color-text-header: #111827;
+          --color-text-body: #374151;
+          --color-text-muted: #6b7280;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>ISC-CodeConnect</h1>
+        <p class="release-info">
+          MVP2 Release Notes &bull; August 2024 &bull; New Features/Enhancements
+        </p>
+      </header>
+
+      <section class="introduction">
+        <p>
+          Welcome to the MVP2 release of ISC-CodeConnect! This major milestone
+          introduces <strong>powerful new features</strong> and significant
+          enhancements designed to revolutionize your development workflow,
+          enhance team collaboration, and provide deeper AI-powered insights
+          into your codebase.
+        </p>
+        <p>
+          From advanced multi-agent systems and code intelligence hubs to
+          comprehensive JIRA integration and modern UI redesign, MVP2 transforms
+          how you interact with AI-powered development tools.
+        </p>
+        <div
+          style="
+            background-color: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: left;
+          "
+        >
+          <p style="margin: 0; color: #0c4a6e; font-weight: 500">
+            📚 <strong>Knowledge Base Update:</strong> ISC-CodeConnect's AI
+            knowledge base has been updated with the latest code information
+            through <strong>July 16th, 2025</strong>, ensuring you get the most
+            current and accurate assistance.
+          </p>
+        </div>
+      </section>
+
+      <section id="key-highlights">
+        <h2 class="section-title">🚀 Key Highlights</h2>
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #e0e7ff">🧠</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Code Intelligence Hub <span class="feature-badge">Beta</span>
+              </h3>
+              <p class="feature-description">
+                Comprehensive repository analysis platform with AI-powered PR
+                summaries, commit analysis, dependency mapping, and intelligent
+                code chat capabilities.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #ffedd5">📄</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Requirement Blueprint
+                <span class="feature-badge">Beta</span>
+              </h3>
+              <p class="feature-description">
+                Transform Salesforce development ideas into structured,
+                AI-analyzed blueprints with comprehensive implementation
+                guidance and technical specifications.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #dcfce7">❤️</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Enhanced Feedback Dashboard
+                <span class="feature-badge">Feedback</span>
+              </h3>
+              <p class="feature-description">
+                Supercharged feedback system with JIRA sub-task creation,
+                usability metrics tracking, and comprehensive dashboard
+                management.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #f3e8ff">👥</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Advanced Multi-Agent System
+                <span class="feature-badge">Multi-Agent</span>
+              </h3>
+              <p class="feature-description">
+                Coordinated AI agents with supervisor and researcher
+                capabilities for enhanced workflow orchestration and intelligent
+                task distribution.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #fff7ed">⚙️</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Agent Scratchpad
+                <span class="feature-badge">Transparency</span>
+              </h3>
+              <p class="feature-description">
+                Get complete transparency into AI processing with step-by-step
+                reasoning visualization, intermediate calculations, and
+                decision-making processes for enhanced understanding.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="detailed-features">
+        <h2 class="section-title">📋 Complete Feature Overview</h2>
+
+        <!-- Core Features -->
+        <h3
+          style="
+            color: var(--color-primary);
+            font-size: 20px;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 8px;
+          "
+        >
+          🎯 Core AI Features
+        </h3>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #e0e7ff">🧠</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Code Intelligence Hub<span class="feature-badge">Beta</span>
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Comprehensive repository analysis platform featuring Repository
+              Explorer for browsing IBMSC repositories with AI-powered PR and
+              commit analysis, Dependency Analyser (Beta) for cross-repository
+                                          file dependency mapping, and GitHub Repository Insights (Beta) for
+              intelligent code chat and insights.
+            </p>
+            <h4>Key Capabilities</h4>
+            <ul>
+              <li>
+                AI-powered PR summaries and insights with JIRA integration
+              </li>
+              <li>Comprehensive commit analysis and code review suggestions</li>
+              <li>Cross-repository dependency mapping and analysis</li>
+              <li>Personal PR dashboard with AI insights and suggestions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #cffafe">🤖</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                IBM Granite Model Selection<span class="feature-badge"
+                  >AI Models</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Choose from multiple IBM Granite models, each optimized for
+              different use cases including code generation, documentation, and
+              complex problem solving.
+            </p>
+            <h4>Benefits</h4>
+            <ul>
+              <li>Access to latest IBM Granite model variants</li>
+              <li>Improved response accuracy and relevance</li>
+              <li>Better performance for specialized workflows</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #ccfbf1">🤝</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Chat Sharing<span class="feature-badge">Collaboration</span>
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Share AI conversations with team members to foster collaboration
+              and knowledge transfer. Perfect for code reviews, brainstorming
+              sessions, and maintaining team knowledge bases.
+            </p>
+            <h4>Features</h4>
+            <ul>
+              <li>Real-time collaboration on AI conversations</li>
+              <li>Granular permission controls</li>
+              <li>Team knowledge base building</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #fce7f3">⚡</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Enhanced Agent Capabilities<span class="feature-badge"
+                  >Performance</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              All AI agents have been upgraded with enhanced context awareness,
+              improved reasoning capabilities, and better task execution for
+              more accurate responses and sophisticated problem-solving.
+            </p>
+          </div>
+        </div>
+
+        <!-- Workflow Features -->
+        <h3
+          style="
+            color: var(--color-primary);
+            font-size: 20px;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 8px;
+          "
+        >
+          🔄 Workflow & Process Features
+        </h3>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #ffedd5">📄</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Requirement Blueprint<span class="feature-badge"
+                  >Salesforce</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Transform Salesforce development ideas into structured,
+              comprehensive blueprints with AI-powered analysis. Get detailed
+              technical insights, step-by-step development guidance, and
+              actionable development tasks with enhanced context from file
+              attachments, GitHub repositories, and JIRA issues.
+            </p>
+            <h4>Key Features</h4>
+            <ul>
+              <li>AI-powered Salesforce requirement analysis</li>
+              <li>
+                Comprehensive implementation guidance and technical
+                specifications
+              </li>
+              <li>Context-aware analysis with file attachments</li>
+              <li>Integration with GitHub and JIRA for enhanced context</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #f3e8ff">👥</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Advanced Multi-Agent System<span class="feature-badge"
+                  >Multi-Agent</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Experience coordinated AI agents working together with our
+              supervisor agent orchestrating complex tasks while researcher
+              agents handle specialized information gathering and analysis.
+            </p>
+            <h4>Capabilities</h4>
+            <ul>
+              <li>Coordinated AI agent collaboration</li>
+              <li>Intelligent task distribution</li>
+              <li>Enhanced problem-solving capabilities</li>
+              <li>Specialized agent expertise</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #fff7ed">⚙️</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Agent Scratchpad<span class="feature-badge">Transparency</span>
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Get complete transparency into AI processing with step-by-step
+              reasoning visualization, intermediate calculations, and
+              decision-making processes that lead to final responses.
+            </p>
+            <h4>Benefits</h4>
+            <ul>
+              <li>Complete AI transparency and reasoning visualization</li>
+              <li>Multiple view modes for interactive scratchpad</li>
+              <li>Educational insights into AI thinking processes</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Integration Features -->
+        <h3
+          style="
+            color: var(--color-primary);
+            font-size: 20px;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 8px;
+          "
+        >
+          🔗 Integration Features
+        </h3>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #f1f5f9">⚫</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Enhanced GitHub Integration<span class="feature-badge"
+                  >DevOps</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Seamlessly connect GitHub repositories with advanced browsing
+              capabilities. Access IBMSC repositories, select specific branches,
+              and upload files directly from repos for context-aware code
+              assistance across different development stages.
+            </p>
+            <h4>Features</h4>
+            <ul>
+              <li>Direct repository file access with branch selection</li>
+              <li>IBMSC repository integration</li>
+              <li>Context-aware code assistance across branches</li>
+              <li>Support for private repositories</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #e0e7ff">🌐</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Unified JIRA Workflow<span class="feature-badge"
+                  >Integration</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              JIRA is now deeply integrated across the platform, connecting
+              development activities directly with project tracking. Create
+              detailed sub-tasks from user feedback, get AI-powered analysis of
+              JIRA issues linked to pull requests, and attach issues to
+              requirement blueprints.
+            </p>
+            <h4>Integration Points</h4>
+            <ul>
+              <li>Create JIRA sub-tasks directly from feedback dialog</li>
+              <li>View and comment on JIRA issues in Feedback Dashboard</li>
+              <li>AI analysis of JIRA issues within Code Intelligence Hub</li>
+              <li>JIRA issue context for Requirement Blueprints</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- User Experience Features -->
+        <h3
+          style="
+            color: var(--color-primary);
+            font-size: 20px;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 8px;
+          "
+        >
+          ✨ User Experience Enhancements
+        </h3>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #f3e8ff">🎨</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Modern UI & Chat Interface<span class="feature-badge"
+                  >UI/UX</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Completely reimagined user interface with focus on clarity,
+              efficiency, and modern design principles. Enhanced chat interface
+              with improved typography, better spacing, enhanced contrast, and
+              streamlined navigation.
+            </p>
+            <h4>Improvements</h4>
+            <ul>
+              <li>50% faster navigation with streamlined menus</li>
+              <li>Improved accessibility with WCAG 2.1 compliance</li>
+              <li>Consistent design language across all features</li>
+              <li>Mobile-optimized responsive experience</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-header">
+            <div class="feature-icon" style="background-color: #ccfbf1">❤️</div>
+            <div class="feature-title-wrapper">
+              <h3 class="feature-title">
+                Enhanced Feedback Dashboard<span class="feature-badge"
+                  >Feedback</span
+                >
+              </h3>
+            </div>
+          </div>
+          <div class="feature-content">
+            <p>
+              Supercharged feedback system with comprehensive dashboard
+              providing complete view of interactions. Create JIRA sub-tasks
+              directly from feedback with usability metrics, view detailed JIRA
+              issue information, and add comments without leaving the app.
+            </p>
+            <h4>Key Features</h4>
+            <ul>
+              <li>
+                Create JIRA sub-tasks directly from feedback with usability
+                metrics
+              </li>
+              <li>Centralized dashboard for all upvotes and downvotes</li>
+              <li>
+                Deep JIRA integration with issue status, priority, and comments
+              </li>
+              <li>Powerful search, sort, and filtering capabilities</li>
+              <li>Quick navigation back to original chat context</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div
+          style="
+            background-color: var(--color-card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--color-border);
+          "
+        >
+          <h3 style="color: var(--color-text-header); margin-top: 0">
+            🎯 What's Next?
+          </h3>
+          <p style="margin-bottom: 10px">
+            Explore all these features in the
+            <strong>"What's New"</strong> section within the application for
+            detailed guides, interactive demos, and step-by-step instructions.
+          </p>
+          <p style="margin: 0">
+            Access the in-app guide by clicking the
+            <strong>What's New</strong> notification or visiting the help
+            section.
+          </p>
+        </div>
+
+        <p>
+          Thank you for being part of the ISC-CodeConnect journey. We're excited
+          to see how these powerful new capabilities enhance your development
+          workflow!
+        </p>
+        <p>
+          Have feedback on MVP2? Use the new
+          <a href="/feedback">Enhanced Feedback Dashboard</a> to let us know –
+          and create JIRA issues directly from your feedback.
+        </p>
+
+        <div
+          style="
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+          "
+        >
+          <p style="color: var(--color-text-muted); font-size: 14px; margin: 0">
+            <strong>ISC-CodeConnect MVP2</strong> • Release Date: August 2024 •
+            11 New Features & Enhancements
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

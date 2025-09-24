@@ -1,0 +1,58 @@
+/* Font definitions for Söhne and Söhne Mono */
+
+/* If you have local font files, uncomment and update paths accordingly:
+@font-face {
+  font-family: 'Söhne';
+  src: url('/fonts/soehne-web-buch.woff2') format('woff2'),
+       url('/fonts/soehne-web-buch.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Söhne';
+  src: url('/fonts/soehne-web-kraftig.woff2') format('woff2'),
+       url('/fonts/soehne-web-kraftig.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Söhne Mono';
+  src: url('/fonts/soehne-mono-web-buch.woff2') format('woff2'),
+       url('/fonts/soehne-mono-web-buch.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Fallback using system fonts that have similar characteristics */
+@font-face {
+  font-family: "Söhne";
+  src: local("Helvetica Neue"), local("Arial");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Söhne";
+  src: local("Helvetica Neue Bold"), local("Arial Bold");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Söhne Mono";
+  src: local("SF Mono"), local("Menlo"), local("Consolas"), local("Courier New");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 
+Note: Söhne is a commercial font from Klim Type Foundry. 
+To properly use it, you need to purchase a license and host the font files.
+The above fallback uses similar system fonts until you can implement the actual fonts.
+*/

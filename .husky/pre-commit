@@ -1,0 +1,4 @@
+detect-secrets-hook --baseline .secrets.baseline --use-all-plugins $(git diff --staged --name-only)
+npm run prettier:write
+npm run lint && npm run compile
+git add .

@@ -1,0 +1,18 @@
+export const urls = {
+  authBasePath: "/auth",
+  login: "/",
+  chat: "/chat",
+  githubChat: "/github-assistant/github-chat",
+  userSession: "/api/user",
+  chatQuery: "/api/query",
+  chatQueryStream: "/api/query/stream",
+  githubChatStream: "/api/github/chat",
+  chatReset: "/api/chat/reset",
+  chatNew: "/api/chat/new",
+  apiChatReset: "/api/chat/reset",
+  apiChatNew: "/api/chat/new",
+  apiQuery: "/api/query",
+  apiChat: "/api/chat",
+  apiQueryStream: "/api/query/stream",
+  apiHistory: "/api/history",
+};

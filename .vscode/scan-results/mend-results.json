@@ -1,0 +1,49 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "mend-001",
+      "name": "SQL Injection",
+      "severity": "high",
+      "description": "Potential SQL injection vulnerability due to unvalidated user input",
+      "file": "index.js",
+      "line": 6,
+      "endLine": 6,
+      "cwe": "CWE-89",
+      "remediation": "Use parameterized queries or an ORM to prevent SQL injection"
+    },
+    {
+      "id": "mend-002",
+      "name": "Insecure Dependency",
+      "severity": "medium",
+      "description": "Package 'express' has known vulnerabilities",
+      "file": "package.json",
+      "line": 1,
+      "endLine": 1,
+      "cve": "CVE-2022-1234",
+      "remediation": "Update express to version 4.17.3 or later"
+    },
+    {
+      "id": "mend-003",
+      "name": "Cross-Site Scripting (XSS)",
+      "severity": "high",
+      "description": "Potential XSS vulnerability in user output",
+      "file": "index.js",
+      "line": 7,
+      "endLine": 7,
+      "cwe": "CWE-79",
+      "remediation": "Use content security policy and escape user input"
+    },
+    {
+      "id": "mend-004",
+      "name": "Information Exposure",
+      "severity": "low",
+      "description": "Verbose error messages could expose sensitive information",
+      "file": "index.js",
+      "line": 5,
+      "endLine": 8,
+      "cwe": "CWE-209",
+      "remediation": "Implement proper error handling"
+    }
+  ],
+  "scanTime": "2025-05-20T05:06:15.097Z"
+}

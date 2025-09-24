@@ -1,0 +1,261 @@
+@import "./fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    /* Light Theme Sidebar Colors */
+    --sidebar-background: 220 60% 97%; /* Very light, slightly desaturated blue */
+    --sidebar-foreground: 220 25% 25%; /* Darker blue-gray for text */
+    --sidebar-primary: 210 70% 55%; /* Vibrant medium blue for active/selected */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text on primary */
+    --sidebar-accent: 220 60% 92%; /* Slightly darker light blue for hover */
+    --sidebar-accent-foreground: 220 25% 20%; /* Darker blue-gray for accent text */
+    --sidebar-border: 220 30% 88%; /* Light grayish blue for borders */
+    --sidebar-ring: 210 70% 55%; /* Matching primary for ring */
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    /* Dark Theme Sidebar Colors */
+    --sidebar-background: 220 30% 12%; /* Deep desaturated navy blue */
+    --sidebar-foreground: 220 15% 75%; /* Light grey for text */
+    --sidebar-primary: 210 70% 60%; /* Brighter, vibrant blue for active */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text on primary */
+    --sidebar-accent: 220 30% 18%; /* Slightly lighter navy for hover */
+    --sidebar-accent-foreground: 220 15% 85%; /* Lighter grey for accent text */
+    --sidebar-border: 220 30% 10%; /* Darker navy for borders */
+    --sidebar-ring: 210 70% 60%; /* Matching primary for ring */
+  }
+}
+
+@layer base {
+  /* Using Söhne font family for UI and content */
+  html {
+    font-family: "Söhne", "Helvetica Neue", Arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* App layout - single scrollable container */
+  #__next,
+  main {
+    height: 100vh;
+    width: 100%;
+  }
+
+  /* Chat layout specific styles - allows contained scrolling for chat interface */
+  .chat-layout {
+    height: 100vh;
+    width: 100%;
+    overflow: auto; /* Changed from 'hidden' to 'auto' to allow scrolling */
+    position: relative; /* Changed from 'fixed' to 'relative' to allow natural document flow */
+    top: 0;
+    left: 0;
+  }
+
+  .chat-layout html,
+  .chat-layout body {
+    height: 100vh;
+    overflow: auto; /* Changed from 'hidden' to 'auto' to allow scrolling */
+  }
+
+  /* Messages container gets scrollable behavior */
+  .messages {
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+    padding-bottom: 1rem;
+    flex: 1 1 auto;
+    height: 0; /* This is important for proper flexbox scroll behavior */
+    scroll-behavior: smooth; /* For smooth scrolling between messages */
+    -webkit-overflow-scrolling: touch; /* Better scrolling for iOS */
+  }
+
+  /* The outer container for chat component */
+  .flex-1.flex.flex-col.max-h-\[calc\(100vh-theme\(spacing\.16\)\]\] {
+    height: calc(100vh - theme(spacing.16));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Make input container fixed at bottom */
+  .border-t.bg-background.p-4 {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+/* Modern customized scrollbar - hidden by default, visible on hover */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px 0;
+  border-radius: 20px;
+}
+
+/* Light theme scrollbar */
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.15);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.25);
+  background-clip: padding-box;
+}
+
+/* Dark theme scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.2);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.05);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.3);
+  background-clip: padding-box;
+}
+
+/* Hide scrollbar when not actively scrolling - Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.2) transparent;
+}
+
+/* Show scrollbar on hover for containers */
+.messages:hover::-webkit-scrollbar-thumb,
+.scroll-container:hover::-webkit-scrollbar-thumb,
+div:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+/* Custom class for elements with modern scrollbar */
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.2) transparent;
+}
+
+/* Special class for when actively scrolling */
+.is-scrolling::-webkit-scrollbar-thumb {
+  opacity: 1 !important;
+  background: hsl(var(--primary) / 0.3) !important;
+}
+
+.dark .is-scrolling::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5) !important;
+}
+
+/* Custom scrollbar for Flow Agent Scratchpad */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* When content needs scrollbar */
+.has-scrollbar::-webkit-scrollbar-thumb {
+  opacity: 0.5;
+  background: hsl(var(--primary) / 0.15);
+}
+
+.dark .has-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.2);
+}
+
+/* Make scrollbar more visible on mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .is-scrolling::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.4) !important;
+  }
+
+  .dark .is-scrolling::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5) !important;
+  }
+}

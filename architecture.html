@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISC-CodeConnect Architecture</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        max-width: 1600px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 40px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .architecture {
+        position: relative;
+        width: 100%;
+        height: 1000px;
+        overflow: visible;
+      }
+
+      .node {
+        position: absolute;
+        border-radius: 12px;
+        padding: 10px 14px;
+        font-size: 11px;
+        font-weight: 600;
+        text-align: center;
+        color: white;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .node:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .auth-flow {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+      }
+      .llm {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+      }
+      .embedding {
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      }
+      .vector-db {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+      }
+      .github {
+        background: linear-gradient(135deg, #2c3e50, #34495e);
+      }
+      .parser {
+        background: linear-gradient(135deg, #27ae60, #229954);
+      }
+      .reranker {
+        background: linear-gradient(135deg, #f39c12, #e67e22);
+      }
+      .context {
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      }
+      .diamond {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+      }
+
+      .user {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      .diamond-shape {
+        width: 80px;
+        height: 80px;
+        transform: rotate(45deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .diamond-content {
+        transform: rotate(-45deg);
+        font-size: 9px;
+        line-height: 1.2;
+      }
+
+      .connection {
+        position: absolute;
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        z-index: 1;
+        height: 3px;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .connection-vertical {
+        width: 3px;
+        background: linear-gradient(135deg, #34495e, #2c3e50);
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .dotted-box {
+        position: absolute;
+        border: 2px dashed #7f8c8d;
+        border-radius: 15px;
+        background: rgba(52, 73, 94, 0.08);
+        backdrop-filter: blur(5px);
+      }
+
+      .arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        z-index: 2;
+      }
+
+      .arrow-right {
+        border-left: 8px solid #34495e;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+      }
+
+      .arrow-down {
+        border-top: 8px solid #34495e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+      }
+
+      .arrow-up {
+        border-bottom: 8px solid #34495e;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+      }
+
+      .yes-no {
+        position: absolute;
+        font-size: 10px;
+        font-weight: bold;
+        color: #27ae60;
+      }
+
+      .no {
+        color: #e74c3c;
+      }
+
+      .dashed {
+        border: 2px dashed #34495e;
+        background: transparent !important;
+      }
+
+      .github-icon::before {
+        content: "⚡";
+      }
+      .llm-icon::before {
+        content: "🤖";
+      }
+      .db-icon::before {
+        content: "🗄️";
+      }
+      .search-icon::before {
+        content: "🔍";
+      }
+      .user-icon::before {
+        content: "👤";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        ISC-CodeConnect: Multi-Agent LangGraph RAG Architecture
+      </div>
+
+      <div class="architecture">
+        <!-- Top Row - User Authentication Flow -->
+        <div class="node user user-icon" style="top: 30px; left: 50px"></div>
+
+        <!-- Authentication Flow -->
+        <div class="node auth-flow" style="top: 30px; left: 150px; width: 80px">
+          🔐<br />Login
+        </div>
+        <div class="node auth-flow" style="top: 30px; left: 260px; width: 80px">
+          👥<br />IBM<br />SSO
+        </div>
+        <div
+          class="node auth-flow"
+          style="top: 30px; left: 370px; width: 100px"
+        >
+          🔑<br />GitHub<br />Authentication
+        </div>
+        <div class="node github" style="top: 30px; left: 500px; width: 80px">
+          �<br />GitHub
+        </div>
+
+        <!-- Connection lines for auth flow -->
+        <div
+          class="connection"
+          style="top: 60px; left: 110px; width: 40px"
+        ></div>
+        <div
+          class="connection"
+          style="top: 60px; left: 230px; width: 30px"
+        ></div>
+        <div
+          class="connection"
+          style="top: 60px; left: 340px; width: 30px"
+        ></div>
+        <div
+          class="connection"
+          style="top: 60px; left: 470px; width: 30px"
+        ></div>
+
+        <!-- YES/NO indicators for auth -->
+        <div class="yes-no" style="top: 70px; left: 200px">YES</div>
+        <div class="yes-no" style="top: 70px; left: 300px">YES</div>
+        <div class="yes-no" style="top: 70px; left: 420px">YES</div>
+
+        <div class="yes-no no" style="top: 100px; left: 170px">NO</div>
+        <div class="yes-no no" style="top: 100px; left: 280px">NO</div>
+        <div class="yes-no no" style="top: 100px; left: 400px">NO</div>
+
+        <!-- Central Question Input -->
+        <div class="node context" style="top: 180px; left: 400px; width: 80px">
+          📝<br />Question
+        </div>
+
+        <!-- LLM Execution Caller -->
+        <div class="node llm" style="top: 250px; left: 380px; width: 120px">
+          🤖<br />LLM<br />Execution<br />Caller<br />(Agent)
+        </div>
+
+        <!-- Main Decision Diamond -->
+        <div class="node diamond diamond-shape" style="top: 340px; left: 380px">
+          <div class="diamond-content">Code<br />vs<br />Metadata?</div>
+        </div>
+
+        <!-- Left Side - Code Processing Path -->
+        <div class="node github" style="top: 200px; left: 50px; width: 100px">
+          🐙<br />ISC<br />Repositories
+        </div>
+        <div class="node parser" style="top: 300px; left: 50px; width: 100px">
+          �<br />ApexLWC<br />Parser
+        </div>
+        <div
+          class="node embedding"
+          style="top: 400px; left: 200px; width: 100px"
+        >
+          🧠<br />Embedding<br />Model
+        </div>
+        <div
+          class="node vector-db"
+          style="top: 500px; left: 180px; width: 140px"
+        >
+          🗄️<br />Vector<br />Search<br />ApexLWC<br />Collection
+        </div>
+
+        <!-- Dotted boxes for Top K sections -->
+        <div
+          class="dotted-box"
+          style="top: 580px; left: 160px; width: 120px; height: 140px"
+        ></div>
+        <div class="node reranker" style="top: 590px; left: 180px; width: 80px">
+          �<br />Top K
+        </div>
+        <div class="node reranker" style="top: 650px; left: 180px; width: 80px">
+          �<br />Reranker
+        </div>
+
+        <!-- Right Side - Metadata Processing Path -->
+        <div class="node github" style="top: 200px; left: 750px; width: 100px">
+          🐙<br />ISC<br />Repositories
+        </div>
+        <div class="node parser" style="top: 300px; left: 750px; width: 100px">
+          �<br />XML<br />Parser
+        </div>
+        <div
+          class="node embedding"
+          style="top: 400px; left: 600px; width: 100px"
+        >
+          🧠<br />Embedding<br />Model
+        </div>
+        <div
+          class="node vector-db"
+          style="top: 500px; left: 580px; width: 140px"
+        >
+          �️<br />Vector<br />Search<br />Metadata<br />Collection
+        </div>
+
+        <!-- Dotted boxes for Top K sections -->
+        <div
+          class="dotted-box"
+          style="top: 580px; left: 560px; width: 120px; height: 140px"
+        ></div>
+        <div class="node reranker" style="top: 590px; left: 580px; width: 80px">
+          �<br />Top K
+        </div>
+        <div class="node reranker" style="top: 650px; left: 580px; width: 80px">
+          �<br />Reranker
+        </div>
+
+        <!-- Central Context Collection -->
+        <div
+          class="node context"
+          style="top: 750px; left: 400px; width: 80px; border-radius: 50px"
+        >
+          📚<br />Context
+        </div>
+
+        <!-- Bottom LLM Processing -->
+        <div class="node llm" style="top: 820px; left: 380px; width: 100px">
+          🤖<br />LLM
+        </div>
+        <div class="node context" style="top: 840px; left: 520px; width: 60px">
+          �<br />Memory
+        </div>
+        <div
+          class="node context dashed"
+          style="top: 900px; left: 380px; width: 100px"
+        >
+          💬<br />Answer
+        </div>
+
+        <!-- Embedding Update Paths -->
+        <div
+          class="node embedding"
+          style="top: 400px; left: 900px; width: 100px"
+        >
+          🧠<br />Embedding<br />Model
+        </div>
+        <div
+          class="node embedding"
+          style="top: 500px; left: 900px; width: 100px"
+        >
+          🧠<br />Embedding<br />Model
+        </div>
+        <div class="node parser" style="top: 600px; left: 900px; width: 100px">
+          📄<br />Custom<br />Chunker
+        </div>
+        <div class="node parser" style="top: 700px; left: 900px; width: 100px">
+          📄<br />Custom<br />Chunker
+        </div>
+
+        <!-- Right Side Decision Diamond -->
+        <div
+          class="node diamond diamond-shape"
+          style="top: 750px; left: 1050px"
+        >
+          <div class="diamond-content">Code<br />vs<br />Metadata?</div>
+        </div>
+
+        <!-- Right Side Parsers -->
+        <div class="node parser" style="top: 800px; left: 1150px; width: 100px">
+          📊<br />XML<br />Parser
+        </div>
+        <div class="node parser" style="top: 800px; left: 1280px; width: 100px">
+          📄<br />ApexLWC<br />Parser
+        </div>
+
+        <!-- Pull Request Processing -->
+        <div class="node github" style="top: 800px; left: 880px; width: 100px">
+          🔄<br />Pull<br />Request<br />Changes
+        </div>
+        <div class="node github" style="top: 850px; left: 1150px; width: 100px">
+          🐙<br />ISC<br />Repositories
+        </div>
+
+        <!-- Connection Lines -->
+        <!-- Vertical connection from question to LLM -->
+        <div
+          class="connection-vertical"
+          style="top: 210px; left: 439px; height: 40px"
+        ></div>
+
+        <!-- Vertical connection from LLM to diamond -->
+        <div
+          class="connection-vertical"
+          style="top: 310px; left: 439px; height: 30px"
+        ></div>
+
+        <!-- Connections from diamond to left and right paths -->
+        <div
+          class="connection"
+          style="top: 380px; left: 300px; width: 80px"
+        ></div>
+        <div
+          class="connection"
+          style="top: 380px; left: 460px; width: 140px"
+        ></div>
+
+        <!-- Vertical connections to embedding models -->
+        <div
+          class="connection-vertical"
+          style="top: 380px; left: 249px; height: 20px"
+        ></div>
+        <div
+          class="connection-vertical"
+          style="top: 380px; left: 649px; height: 20px"
+        ></div>
+
+        <!-- Connections to vector databases -->
+        <div
+          class="connection-vertical"
+          style="top: 430px; left: 249px; height: 70px"
+        ></div>
+        <div
+          class="connection-vertical"
+          style="top: 430px; left: 649px; height: 70px"
+        ></div>
+
+        <!-- Connections to rerankers -->
+        <div
+          class="connection-vertical"
+          style="top: 540px; left: 249px; height: 50px"
+        ></div>
+        <div
+          class="connection-vertical"
+          style="top: 540px; left: 649px; height: 50px"
+        ></div>
+
+        <!-- Connections to central context -->
+        <div
+          class="connection"
+          style="top: 700px; left: 280px; width: 120px"
+        ></div>
+        <div
+          class="connection"
+          style="top: 700px; left: 440px; width: 140px"
+        ></div>
+
+        <!-- Connection from context to final LLM -->
+        <div
+          class="connection-vertical"
+          style="top: 780px; left: 439px; height: 40px"
+        ></div>
+
+        <!-- Connection from LLM to answer -->
+        <div
+          class="connection-vertical"
+          style="top: 850px; left: 429px; height: 50px"
+        ></div>
+
+        <!-- Path labels -->
+        <div class="yes-no" style="top: 360px; left: 300px; color: #3498db">
+          Code
+        </div>
+        <div class="yes-no" style="top: 360px; left: 550px; color: #27ae60">
+          Metadata
+        </div>
+
+        <div class="yes-no" style="top: 780px; left: 1100px; color: #27ae60">
+          Metadata<br />Changes
+        </div>
+        <div class="yes-no" style="top: 780px; left: 1250px; color: #3498db">
+          Code<br />Changes
+        </div>
+
+        <!-- Update Embeddings labels -->
+        <div
+          style="
+            position: absolute;
+            top: 330px;
+            left: 100px;
+            font-size: 10px;
+            color: #7f8c8d;
+          "
+        >
+          Update<br />Embeddings
+        </div>
+        <div
+          style="
+            position: absolute;
+            top: 330px;
+            left: 800px;
+            font-size: 10px;
+            color: #7f8c8d;
+          "
+        >
+          Update<br />Embeddings
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add subtle animations on load
+      document.addEventListener("DOMContentLoaded", function () {
+        const nodes = document.querySelectorAll(".node");
+        nodes.forEach((node, index) => {
+          node.style.opacity = "0";
+          node.style.transform = "translateY(20px)";
+          setTimeout(() => {
+            node.style.transition = "all 0.5s ease";
+            node.style.opacity = "1";
+            node.style.transform = "translateY(0)";
+          }, index * 50);
+        });
+      });
+
+      // Add hover effects
+      document.querySelectorAll(".node").forEach((node) => {
+        node.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.08) translateY(-3px)";
+          this.style.boxShadow = "0 12px 30px rgba(0, 0, 0, 0.25)";
+          this.style.zIndex = "10";
+        });
+
+        node.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1) translateY(0)";
+          this.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.15)";
+          this.style.zIndex = "5";
+        });
+      });
+    </script>
+  </body>
+</html>
